@@ -1,0 +1,25 @@
+.custom2cols {
+    width: 50%;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .custom3cols {
+    width: 33%;
+    max-width: 33%;
+    flex-basis: 33%;
+  }
+  .custom4cols {
+    width: 25%;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .custom5cols {
+    width: 20%;
+    max-width: 20%;
+    flex-basis: 20%;
+  }
+  .custom7cols {
+    width: 14%;
+    max-width: 14%;
+    flex-basis: 14%;
+  }
