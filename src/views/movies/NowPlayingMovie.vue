@@ -12,7 +12,7 @@
                                             @click.stop="openModal(movie.id)">
                                             
               <v-card class="d-flex flex-column" hover>
-                <v-img :src="`${imgProcess}${movie.poster_path}`" :lazy-src="`${imgProcess}${movie.poster_path}`">
+                <v-img :src="`${imgProcess(movie.poster_path)}`" :lazy-src="`${imgProcess(movie.poster_path)}`">
                   <!--Slot-->
                     <template v-slot:placeholder>
                       <v-row class="fill-height ma-0" align="center" justify="center">
@@ -68,7 +68,7 @@ export default {
      async openModal(movie) {
       // console.log('opened')
       //query the individual movie by movie_id
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=59b2f04f78d1977273c115fc826eb437&language=en-US&append_to_response=videos,images`)
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=59b2f04f78d1977273c115fc826eb437&language=en-US&append_to_response=videos,images,recommendations`)
       const  data = await response.json()
       this.showMovieInfo = data // append the fetches result data
       this.showMovie = true
@@ -77,14 +77,16 @@ export default {
     closeModal() {
       // console.log('closed')
       this.showMovie = false
+    },
+    imgProcess(img) {
+
+      if(img) {
+          return `https://image.tmdb.org/t/p/w500${img}`
+      }
+      
+      return `/images/no_image.svg`
     }
   
-
-  },
-  computed: {
-      imgProcess: () => {
-            return 'https://image.tmdb.org/t/p/w500'
-          },
   },
   mounted() {
     this.getNowPlayingMovies(this.page)

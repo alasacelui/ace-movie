@@ -7,7 +7,7 @@
           <v-img src="/images/brand-logo.svg"  class="mx-3" contain max-width="40" max-height="40"></v-img>
 
           <router-link to="/" class="white--text text-decoration-none">
-            <v-app-bar-title>Ace Movie Tracker</v-app-bar-title>
+            <v-app-bar-title>Ace Movie</v-app-bar-title>
           </router-link>
      
         <v-spacer></v-spacer>
@@ -38,6 +38,20 @@
           </v-list-item>
         </v-list>
         </v-menu>
+
+         <!--People Menu -->
+         <v-menu offset-y transition="scale-transition" dark>
+         <template v-slot:activator="{ on, attrs }">
+            <v-btn text  dark v-bind="attrs" v-on="on">
+            People
+            </v-btn>
+        </template>
+        <v-list>
+          <v-list-item v-for="(title, index) in menu.people" :key="index" :to="title.route">
+            <v-list-item-title >{{ title.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+        </v-menu>
       
     </v-app-bar>
         <v-main>
@@ -63,9 +77,10 @@ export default {
            tv:[
              {title:'Popular', route:{name:'PopularTv'}},
              {title:'Airing Today', route:{name:'AiringTv'}},
-            //  {title:'On Tv', route:{name:''}},
-            //  {title:'Top Rated', route:{name:''}},
-           ]
+           ],
+            people:[
+            {title:'Popular People', route:{name:'PopularPeople'}},
+          ]
       }
     }
    

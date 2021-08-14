@@ -3,7 +3,7 @@
     <v-container class="px-10">
        <ShowMovieInfo v-if="showMovie" :showMovie="showMovie" :showMovieInfo="showMovieInfo" @closeModal="closeModal"> </ShowMovieInfo>
 
-      <h1 class="subheader light-blue--text">Upcoming Movies</h1> <br>
+      <h1 class="subheader light-blue--text">Top Rated Movies</h1> <br>
       <v-row class="py-5" v-if="tr_movies.length">
             <v-col class="d-flex" :class="{ custom2cols: $vuetify.breakpoint.xs,
                                             custom3cols: $vuetify.breakpoint.sm,
@@ -12,7 +12,7 @@
                                              @click.stop="openModal(movie.id)">
                                             
               <v-card class="d-flex flex-column" hover>
-                <v-img :src="`${imgProcess}${movie.poster_path}`" :lazy-src="`${imgProcess}${movie.poster_path}`">
+                <v-img :src="`${imgProcess(movie.poster_path)}`" :lazy-src="`${imgProcess(movie.poster_path)}`">
                   <!--Slot-->
                     <template v-slot:placeholder>
                       <v-row class="fill-height ma-0" align="center" justify="center">
@@ -68,7 +68,7 @@ export default {
      async openModal(movie) {
       // console.log('opened')
       //query the individual movie by movie_id
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=59b2f04f78d1977273c115fc826eb437&language=en-US&append_to_response=videos,images`)
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=59b2f04f78d1977273c115fc826eb437&language=en-US&append_to_response=videos,images,recommendations`)
       const  data = await response.json()
       this.showMovieInfo = data // append the fetches result data
       this.showMovie = true
@@ -77,13 +77,16 @@ export default {
     closeModal() {
       // console.log('closed')
       this.showMovie = false
+    },
+    imgProcess(img) {
+
+      if(img) {
+          return `https://image.tmdb.org/t/p/w500${img}`
+      }
+      
+      return `/images/no_image.svg`
     }
 
-  },
-  computed: {
-      imgProcess: () => {
-            return 'https://image.tmdb.org/t/p/w500'
-          },
   },
   mounted() {
     this.getTopRatedMovies(this.page)
