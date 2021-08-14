@@ -1,11 +1,11 @@
 <template>
   <div>
-      <v-dialog v-if="showMovie" v-model="open" @click:outside="hide" width="600" transition="dialog-bottom-transition">
+      <v-dialog v-if="showMovie" v-model="open" @input="hide" width="600" transition="dialog-bottom-transition">
         <v-card>
                 <v-img class="white--text align-end" :src="`${imgProcess(showMovieInfo.poster_path)}`" :lazy-src="`${imgProcess(showMovieInfo.poster_path)}`" height="350px"
                 gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" position="top">
                 <v-card-title class="display-1 font-weight-bold float-right">
-                    <v-chip large label dark color="warning" :href="`https://www.youtube.com/watch?v=${showMovieInfo.videos.results[0].key}`" target="_blank">
+                    <v-chip large label dark color="warning" v-if="showMovieInfo.videos.results.length" :href="`https://www.youtube.com/watch?v=${showMovieInfo.videos.results[0].key}`" target="_blank">
                         <v-icon left>
                             mdi-play
                         </v-icon>
@@ -120,18 +120,9 @@ export default {
     },
    mounted() {
        this.getMovieCast()
-
-       console.log(this.showMovieInfo)
     
     }
 
   
 }
 </script>
-
-<style scoped>
-.img {
-background-position: 75% 25% !important;
-}
-
-</style>
