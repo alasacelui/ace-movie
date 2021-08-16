@@ -31,7 +31,7 @@
       <v-container class="pa-16 pt-2">
         <h1 class="display-1">Latest Movies</h1> <br>
         <v-row>
-          <v-col class="d-flex" :class="{ custom2cols: $vuetify.breakpoint.xs,
+          <v-col class="d-flex" :class="{   custom1cols: $vuetify.breakpoint.xs,
                                             custom3cols: $vuetify.breakpoint.sm,
                                             custom4cols: $vuetify.breakpoint.md,
                                             custom8cols: $vuetify.breakpoint.lgAndUp}" 
@@ -76,7 +76,7 @@
       <v-container class="pa-16 pt-2">
         <h1 class="display-1">Top Rated Movies</h1> <br>
         <v-row>
-          <v-col class="d-flex" :class="{ custom2cols: $vuetify.breakpoint.xs,
+          <v-col class="d-flex" :class="{   custom1cols: $vuetify.breakpoint.xs,
                                             custom3cols: $vuetify.breakpoint.sm,
                                             custom4cols: $vuetify.breakpoint.md,
                                             custom8cols: $vuetify.breakpoint.lgAndUp}" 
@@ -120,7 +120,7 @@
       <v-container class="pa-16 pt-2">
         <h1 class="display-1">Latest Tv Shows</h1> <br>
         <v-row>
-          <v-col class="d-flex" :class="{ custom2cols: $vuetify.breakpoint.xs,
+          <v-col class="d-flex" :class="{   custom1cols: $vuetify.breakpoint.xs,
                                             custom3cols: $vuetify.breakpoint.sm,
                                             custom4cols: $vuetify.breakpoint.md,
                                             custom8cols: $vuetify.breakpoint.lgAndUp}" 

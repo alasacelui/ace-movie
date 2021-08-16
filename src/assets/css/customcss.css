@@ -1,3 +1,8 @@
+.custom1cols {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex-basis: 100% !important;
+}
 .custom2cols {
     width: 50% !important;
     max-width: 50% !important;
