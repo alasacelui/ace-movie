@@ -44,8 +44,6 @@
             </v-col>
         <v-pagination :length="length" v-model="page" total-visible="5" class="mx-auto py-10" @input="handlePagination"></v-pagination>
       </v-row>
-      <h1 v-else>ERROR NOT FOUND</h1>
-
 
     </v-container>
   </div>
