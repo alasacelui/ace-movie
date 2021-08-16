@@ -28,7 +28,7 @@
     
      <!--section-two Latest MOVIE-->
     <section class="jumbotron">
-      <v-container class="py-16 px-4 pt-2">
+      <v-container class="py-16 px-1 pt-2">
         <h1 class="display-1">Latest Movies</h1> <br>
         <v-row>
           <v-col class="d-flex" :class="{ custom2cols: $vuetify.breakpoint.xs,
@@ -68,7 +68,7 @@
            
         </v-row>
         <br>
-         <router-link class="text-decoration-none  float-right text-capitalize" to="/popular-movies">
+         <router-link class="text-decoration-none  float-right text-capitalize" :to="{name:'PopularMovie'}">
           <v-btn small color="cyan" dark>
           show more
              <v-icon right>
@@ -82,7 +82,7 @@
 
   <!--section-three Top Rated MOVIE-->
     <section class="jumbotron">
-      <v-container class="py-16 px-4 pt-2">
+      <v-container class="py-16 px-1 pt-2">
         <h1 class="display-1">Top Rated Movies</h1> <br>
         <v-row>
           <v-col class="d-flex" :class="{ custom2cols: $vuetify.breakpoint.xs,
@@ -121,7 +121,7 @@
             </v-col>
         </v-row>
          <br>
-         <router-link class="text-decoration-none  float-right text-capitalize" to="/popular-movies">
+         <router-link class="text-decoration-none  float-right text-capitalize" :to="{name:'TopRatedMovie'}">
           <v-btn small color="cyan" dark>
           show more
              <v-icon right>
@@ -134,7 +134,7 @@
 
      <!--section-four LATEST TV Shows-->
     <section class="jumbotron">
-      <v-container class="pa-16 px-4 pt-2">
+      <v-container class="pa-16 px-1 pt-2">
         <h1 class="display-1">Latest Tv Shows</h1> <br>
         <v-row>
           <v-col class="d-flex" :class="{ custom2cols: $vuetify.breakpoint.xs,
@@ -173,7 +173,7 @@
           </v-col>
         </v-row>
          <br>
-         <router-link class="text-decoration-none  float-right text-capitalize" to="/popular-movies">
+         <router-link class="text-decoration-none  float-right text-capitalize" :to="{name:'PopularTv'}">
           <v-btn small color="cyan" dark>
           show more
              <v-icon right>

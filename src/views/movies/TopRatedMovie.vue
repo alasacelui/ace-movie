@@ -1,6 +1,6 @@
 <template>
   <div class="mt-5">
-    <v-container class="px-2">
+    <v-container class="px-1">
        <ShowMovieInfo v-if="showMovie" :showMovie="showMovie" :showMovieInfo="showMovieInfo" @closeModal="closeModal"> </ShowMovieInfo>
 
       <v-row>
