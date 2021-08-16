@@ -1,6 +1,6 @@
 <template>
   <div class="mt-5">
-    <v-container class="px-10">
+    <v-container class="px-2">
       <ShowPeopleInfo v-if="showPeople" :showPeople="showPeople" :showPeopleInfo="showPeopleInfo" @closeModal="closeModal"> </ShowPeopleInfo>
 
       <v-row>

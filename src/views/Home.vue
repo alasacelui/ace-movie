@@ -2,7 +2,7 @@
   <div>
     <!--section-one -->
     <section class="jumbotron">
-      <v-container class="pa-16 pb-5">
+      <v-container class="py-8 px-4 pb-3">
         <v-row>
           <v-col cols="12" lg="12" xl="6">
             <h1 :class="[$vuetify.breakpoint.mdAndUp ? 'display-4' : 'display-1']" class="font-weight-bold"> <span class="light-blue--text">Browse</span> Latest <br> <span  class="light-blue--text">Movies</span> Today 🎬 !</h1>
@@ -28,10 +28,10 @@
     
      <!--section-two Latest MOVIE-->
     <section class="jumbotron">
-      <v-container class="pa-16 pt-2">
+      <v-container class="py-16 px-4 pt-2">
         <h1 class="display-1">Latest Movies</h1> <br>
         <v-row>
-          <v-col class="d-flex" :class="{   custom1cols: $vuetify.breakpoint.xs,
+          <v-col class="d-flex" :class="{ custom2cols: $vuetify.breakpoint.xs,
                                             custom3cols: $vuetify.breakpoint.sm,
                                             custom4cols: $vuetify.breakpoint.md,
                                             custom8cols: $vuetify.breakpoint.lgAndUp}" 
@@ -67,16 +67,25 @@
             </v-col>
            
         </v-row>
+        <br>
+         <router-link class="text-decoration-none  float-right text-capitalize" to="/popular-movies">
+          <v-btn small color="cyan" dark>
+          show more
+             <v-icon right>
+            mdi-dots-vertical
+          </v-icon>
+          </v-btn>
+         </router-link>
       </v-container>
     </section>
 
 
   <!--section-three Top Rated MOVIE-->
     <section class="jumbotron">
-      <v-container class="pa-16 pt-2">
+      <v-container class="py-16 px-4 pt-2">
         <h1 class="display-1">Top Rated Movies</h1> <br>
         <v-row>
-          <v-col class="d-flex" :class="{   custom1cols: $vuetify.breakpoint.xs,
+          <v-col class="d-flex" :class="{ custom2cols: $vuetify.breakpoint.xs,
                                             custom3cols: $vuetify.breakpoint.sm,
                                             custom4cols: $vuetify.breakpoint.md,
                                             custom8cols: $vuetify.breakpoint.lgAndUp}" 
@@ -110,17 +119,25 @@
               </v-card>
             </v-hover>
             </v-col>
-           
         </v-row>
+         <br>
+         <router-link class="text-decoration-none  float-right text-capitalize" to="/popular-movies">
+          <v-btn small color="cyan" dark>
+          show more
+             <v-icon right>
+            mdi-dots-vertical
+          </v-icon>
+          </v-btn>
+         </router-link>
       </v-container>
     </section>
 
      <!--section-four LATEST TV Shows-->
     <section class="jumbotron">
-      <v-container class="pa-16 pt-2">
+      <v-container class="pa-16 px-4 pt-2">
         <h1 class="display-1">Latest Tv Shows</h1> <br>
         <v-row>
-          <v-col class="d-flex" :class="{   custom1cols: $vuetify.breakpoint.xs,
+          <v-col class="d-flex" :class="{ custom2cols: $vuetify.breakpoint.xs,
                                             custom3cols: $vuetify.breakpoint.sm,
                                             custom4cols: $vuetify.breakpoint.md,
                                             custom8cols: $vuetify.breakpoint.lgAndUp}" 
@@ -155,6 +172,15 @@
             </v-hover>
           </v-col>
         </v-row>
+         <br>
+         <router-link class="text-decoration-none  float-right text-capitalize" to="/popular-movies">
+          <v-btn small color="cyan" dark>
+          show more
+             <v-icon right>
+            mdi-dots-vertical
+          </v-icon>
+          </v-btn>
+         </router-link>
       </v-container>
     </section>
     
