@@ -28,7 +28,7 @@
                 <br>
 
                 <p class="subtitle-1"> <span class="green--text">Synopsis :</span>  {{showMovieInfo.overview}}</p>
-                <p class=" overline">Release Date: {{ showMovieInfo.release_date }}</p>
+                <p class=" overline">Release Date: {{ formatDate(showMovieInfo.release_date) }}</p>
                 <p class="overline" v-if="showMovieInfo.revenue > 0">Total Revenue: ${{ formatToThousand(showMovieInfo.revenue) }}</p>
                
                 <div>
@@ -45,10 +45,10 @@
             </v-card-text>
 
             <!--Slide Group (Movie Cast)-->
-           <v-sheet class="mx-auto mb-3" max-width="800" v-if="movie_cast.length">
+           <v-sheet class="mx-auto mb-3" max-width="800" v-if="showMovieInfo.credits.cast.length">
                <p class="overline pt-1 pl-8 green--text m-0">Movie Cast:</p>
                 <v-slide-group  class="pa-4 pt-0" center-active show-arrows>
-                    <v-slide-item v-for="cast in movie_cast" :key="cast.id" >
+                    <v-slide-item v-for="cast in showMovieInfo.credits.cast" :key="cast.id" >
                         <v-card class="ma-4" height="120" width="100">
                                 <v-img :src="`${imgProcess(cast.profile_path)}`" :lazy-src="`${imgProcess}${cast.profile_path}`" contain :title="cast.name">
                                     <!--Loader-->
@@ -109,7 +109,6 @@ export default {
     data() {
         return {
             showMovieModal : this.showMovie, // populate the prop showMovie to this data property (showMovieModal) ** we cannot mutate direct to the prop so we store to the data property
-            movie_cast: [] 
         }
     },
     methods: {
@@ -118,15 +117,7 @@ export default {
             this.open = false
             this.$emit('closeModal') // emit a message to the parent 
         },
-        log(value) {
-            console.log(value)
-        },
-       async getMovieCast() {
-            const response = await fetch(`https://api.themoviedb.org/3/movie/${this.showMovieInfo.id}/credits?api_key=59b2f04f78d1977273c115fc826eb437&language=en-US`)
-            const {cast} = await response.json()
-            this.movie_cast = cast
-            
-        },
+  
         imgProcess(img) {
             if(img) {
                 return `https://image.tmdb.org/t/p/w780${img}`
@@ -134,10 +125,6 @@ export default {
                 return `/images/no_image.svg`
 
         },
-         formatToThousand(val) {
-            return val.toLocaleString();
-        }
-
     },
     computed: {
        open:{
@@ -152,9 +139,7 @@ export default {
         
     },
    mounted() {
-       this.getMovieCast()
-       console.log(this.showMovieInfo)
-    
+      console.log(this.showMovieInfo)
     }
 
   

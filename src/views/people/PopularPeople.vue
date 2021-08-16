@@ -3,7 +3,17 @@
     <v-container class="px-10">
       <ShowPeopleInfo v-if="showPeople" :showPeople="showPeople" :showPeopleInfo="showPeopleInfo" @closeModal="closeModal"> </ShowPeopleInfo>
 
-      <h1 class="subheader light-blue--text">Popular People</h1> <br>
+      <v-row>
+        <v-col>
+          <h1 class="subheader light-blue--text">Popular People</h1>
+        </v-col>
+        <v-col  cols="12" md="4" lg="2">
+          <v-input>
+            <v-text-field label="Search" prepend-icon="mdi-magnify" v-model="search_people" @change="handleSearch(page)"></v-text-field>
+          </v-input>
+        </v-col>
+      </v-row>
+      <br>
       <v-row class="py-5" v-if="popular_people.length">
             <v-col class="d-flex" :class="{ custom2cols: $vuetify.breakpoint.xs,
                                             custom3cols: $vuetify.breakpoint.sm,
@@ -34,6 +44,7 @@
             </v-col>
         <v-pagination :length="length" v-model="page" total-visible="5" class="mx-auto py-10" @input="handlePagination"></v-pagination>
       </v-row>
+      <h1 v-else>ERROR NOT FOUND</h1>
 
 
     </v-container>
@@ -50,18 +61,51 @@ export default {
       page:1,
       length:100,
       showPeople: false,
-      showPeopleInfo: []
+      showPeopleInfo: [],
+      search_people: '',
+      query_param: 'person/popular' //search/person
     }
   },
   methods: {
-    async getPopularPeople(page) {
-        const res = await fetch(`https://api.themoviedb.org/3/person/popular?api_key=59b2f04f78d1977273c115fc826eb437&language=en-US&page=${page}`)
-        const {results} = await res.json()
-        this.popular_people = results
+    async getPopularPeople(page) { 
+
+            const res = await fetch(`https://api.themoviedb.org/3/${this.query_param}?api_key=59b2f04f78d1977273c115fc826eb437&language=en-US&page=${page}`)
+            const {results} = await res.json()
+            this.popular_people = results
     },
+   async handleSearch(page) {
+
+        //check if there is a search value  if it does then use the handleSearch() else revert to the getPopularPeople(page)
+        if(this.search_people) 
+        {
+          this.query_param = 'search/person'
+          const response = await fetch(`https://api.themoviedb.org/3/${this.query_param}?api_key=59b2f04f78d1977273c115fc826eb437&query=${this.search_people}&language=en-US&page=${page}`)
+          const results = await response.json()
+          this.popular_people = results.results
+          this.length = results.total_pages
+
+        } else {
+            this.query_param = 'person/popular'
+            this.length = 100 
+            this.getPopularPeople(this.page)
+        }
+    },
+  
     handlePagination(value) {
-      this.page = value
-      this.getPopularPeople(this.page)
+
+      this.page = value // page val
+
+      // check if its comming from the search box or its comming from the default page
+
+      if(this.query_param == 'person/popular') {
+
+        this.getPopularPeople(this.page)
+
+      } else {
+
+        this.handleSearch(this.page)
+        
+      }
     },
     async openModal(person) {
       // console.log('opened')
@@ -82,9 +126,7 @@ export default {
         return `https://image.tmdb.org/t/p/w500${img}`
     }
     return `/images/no_image.svg`
-
-}
-  
+   }
   },
   mounted() {
     this.getPopularPeople(this.page)

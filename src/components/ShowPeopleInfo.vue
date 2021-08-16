@@ -28,7 +28,7 @@
                 <br>
 
                 <p class="subtitle-1"> <span class="green--text">Biography :</span>  {{showPeopleInfo.biography}}</p>
-                <p class=" overline">Birth Day: {{ showPeopleInfo.birthday }}</p>
+                <p class=" overline">Birth Day: {{ formatDate(showPeopleInfo.birthday) }}</p>
                 <p class="overline" v-if="showPeopleInfo.revenue > 0">Total Revenue: ${{ formatToThousand(showPeopleInfo.revenue) }}</p>
                
                 <div>
@@ -121,24 +121,11 @@ export default {
             this.open = false
             this.$emit('closeModal') // emit a message to the parent 
         },
-        log(value) {
-            console.log(value)
-        },
-    //    async getMovieCast() {
-    //         const response = await fetch(`https://api.themoviedb.org/3/movie/${this.showMovieInfo.id}/credits?api_key=59b2f04f78d1977273c115fc826eb437&language=en-US`)
-    //         const {cast} = await response.json()
-    //         this.movie_cast = cast
-            
-    //     },
         imgProcess(img) {
             if(img) {
                 return `https://image.tmdb.org/t/p/w780${img}`
              }
                 return `/images/no_image.svg`
-
-        },
-         formatToThousand(val) {
-            return val.toLocaleString();
         }
 
     },
@@ -154,11 +141,6 @@ export default {
        }
         
     },
-   mounted() {
-    //    console.log(this.showPeopleInfo)
-    
-    }
-
   
 }
 </script>

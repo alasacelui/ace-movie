@@ -2,15 +2,15 @@
   <div class="jumbotron">
       <v-container class="pa-16">
         <v-row>
-          <v-col md="6">
-            <h1 class="display-3 font-weight-bold"> <span class="light-blue--text">Browse</span> Latest <br> <span  class="light-blue--text">Movies</span> Today !</h1>
-            <p class="subtitle-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam sapiente odio accusantium dignissimos libero eligendi nobis ipsam, delectus neque officiis?</p>
+          <v-col cols="12" lg="12" xl="6">
+            <h1 :class="[$vuetify.breakpoint.mdAndUp ? 'display-4' : 'display-1']" class="font-weight-bold"> <span class="light-blue--text">Browse</span> Latest <br> <span  class="light-blue--text">Movies</span> Today !</h1>
+            <p class="overline">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam sapiente odio accusantium dignissimos libero eligendi nobis ipsam, delectus neque officiis? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore, distinctio!</p>
             <v-btn large color="primary">
               Read More
             </v-btn>
           </v-col>
-          <v-col md="6">
-            <v-img src="images/jwick.jpg" lazy-src="images/jwick.jpg" max-height="500" max-width="500" contain>
+          <v-col class='hidden-sm-and-down' lg="12" xl="6">
+            <v-img src="images/jwick.jpg" lazy-src="images/jwick.jpg" max-height="500" max-width="650" contain>
 
                 <template v-slot:placeholder>
                   <v-row class="fill-height ma-0" align="center" justify="center">

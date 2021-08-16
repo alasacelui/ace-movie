@@ -3,7 +3,16 @@
     <v-container class="px-10">
       <ShowTvShowsInfo v-if="showTvShows" :showTvShows="showTvShows" :showTvShowsInfo="showTvShowsInfo" @closeModal="closeModal"> </ShowTvShowsInfo>
 
-      <h1 class="subheader light-blue--text">Airing Tv Shows</h1> <br>
+       <v-row>
+          <v-col>
+            <h1 class="subheader light-blue--text">Airing Tv Shows</h1>
+          </v-col>
+          <v-col  cols="12" md="4" lg="2">
+            <v-input>
+              <v-text-field label="Search" prepend-icon="mdi-magnify" v-model="search_tv_shows" @change="handleSearch(page)"></v-text-field>
+            </v-input>
+          </v-col>
+       </v-row>
       <v-row class="py-5" v-if="airing_tv_shows.length">
             <v-col class="d-flex" :class="{ custom2cols: $vuetify.breakpoint.xs,
                                             custom3cols: $vuetify.breakpoint.sm,
@@ -21,7 +30,7 @@
                     </template>
                 </v-img>
                 <v-card-title>
-                  <p class="body-1">{{ tv_shows.title }}</p>
+                  <p class="body-1">{{ tv_shows.name }}</p>
                 </v-card-title>
                     <v-spacer></v-spacer>
                 <v-card-actions class="justify-between">
@@ -50,24 +59,54 @@ export default {
       page:1,
       length:100,
       showTvShows: false,
-      showTvShowsInfo: []
+      showTvShowsInfo: [],
+      search_tv_shows: '',
+      query_param: 'tv/airing_today' //search/tv
     }
   },
   methods: {
     async getAiringTvShows(page) {
-        const res = await fetch(`https://api.themoviedb.org/3/tv/airing_today?api_key=59b2f04f78d1977273c115fc826eb437&language=en-US&page=${page}`)
+        const res = await fetch(`https://api.themoviedb.org/3/${this.query_param}?api_key=59b2f04f78d1977273c115fc826eb437&language=en-US&page=${page}`)
         const {results} = await res.json()
         this.airing_tv_shows = results
     },
+    async handleSearch(page) {
+
+      //check if there is a search value  if it does then use the handleSearch() else revert to the getPopularPeople(page)
+      if(this.search_tv_shows) 
+      {
+        this.query_param = 'search/tv'
+        const response = await fetch(`https://api.themoviedb.org/3/${this.query_param}?api_key=59b2f04f78d1977273c115fc826eb437&query=${this.search_tv_shows}&language=en-US&page=${page}`)
+        const results = await response.json()
+        this.airing_tv_shows = results.results
+        this.length = results.total_pages
+
+      } else {
+          this.query_param = 'search/movie'
+          this.length = 100 
+          this.getAiringTvShows(this.page)
+      }
+  },
     handlePagination(value) {
+
       this.page = value
-      this.getAiringTvShows(this.page)
+
+      if(this.query_param == 'tv/airing_today') {  // check if its comming from the search box or its comming from the default page
+
+         this.getAiringTvShows(this.page)
+        
+      } else {
+
+          this.handleSearch(this.page)
+
+      }
+
     },
     async openModal(tv) {
       // console.log('opened')
 
       //query the individual tvshow by tv_id
-      const response = await fetch(`https://api.themoviedb.org/3/tv/${tv}?api_key=59b2f04f78d1977273c115fc826eb437&language=en-US&append_to_response=videos,images,recommendations`)
+      const response = await fetch(`https://api.themoviedb.org/3/tv/${tv}?api_key=59b2f04f78d1977273c115fc826eb437&language=en-US&append_to_response=videos,images,recommendations,credits`)
       const  data = await response.json()
       this.showTvShowsInfo = data // append the fetches result data
       this.showTvShows = true // modal

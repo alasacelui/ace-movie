@@ -29,7 +29,7 @@
                 <br>
 
                 <p class="subtitle-1"> <span class="green--text">Synopsis :</span>  {{showTvShowsInfo.overview}}</p>
-                <p class=" overline">Release Date: {{ showTvShowsInfo.last_air_date }}</p>
+                <p class=" overline">Release Date: {{ formatDate(showTvShowsInfo.last_air_date) }}</p>
                 <p class="overline" v-if="showTvShowsInfo.revenue > 0">Total Revenue: ${{ formatToThousand(showTvShowsInfo.revenue) }}</p>
                
                 <div>
@@ -46,10 +46,10 @@
             </v-card-text>
 
             <!--Slide Group (Tv Cast)-->
-           <v-sheet class="mx-auto py-3"  elevation="8" max-width="800" v-if="tvshows_cast.length">
+           <v-sheet class="mx-auto py-3"  elevation="8" max-width="800" v-if="showTvShowsInfo.credits.cast.length">
                <p class="subtitle-1 pt-1 pl-8 green--text m-0">Tv Show Cast:</p>
                 <v-slide-group  class="pa-4 pt-0" center-active show-arrows>
-                    <v-slide-item v-for="cast in tvshows_cast" :key="cast.id" >
+                    <v-slide-item v-for="cast in showTvShowsInfo.credits.cast" :key="cast.id" >
                         <v-card class="ma-4" height="120" width="100">
                                 <v-img :src="`${imgProcess(cast.profile_path)}`" :lazy-src="`${imgProcess}${cast.profile_path}`" contain :title="cast.name">
                                     <!--Loader-->
@@ -120,27 +120,12 @@ export default {
             this.open = false
             this.$emit('closeModal') // emit a message to the parent 
         },
-        log(value) {
-            console.log(value)
-        },
-       async getTvShowsCast() {
-            const response = await fetch(`https://api.themoviedb.org/3/tv/${this.showTvShowsInfo.id}/credits?api_key=59b2f04f78d1977273c115fc826eb437&language=en-US`)
-            const {cast} = await response.json()
-            this.tvshows_cast = cast
-            
-        },
         imgProcess(img) {
             if(img) {
                 return `https://image.tmdb.org/t/p/w780${img}`
              }
                 return `/images/no_image.svg`
-
         }
-        ,
-         formatToThousand(val) {
-            return val.toLocaleString();
-        }
-
     },
     computed: {
        open:{
@@ -154,7 +139,7 @@ export default {
        },
     },
    mounted() {
-       this.getTvShowsCast()
+     
     }
 
   
