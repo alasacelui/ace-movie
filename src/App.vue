@@ -53,7 +53,7 @@
           </v-app-bar-nav-icon>
           <v-img src="/images/brand-logo.svg"  class="mx-3 " contain max-width="40" max-height="40"></v-img>
 
-          <router-link to="/" class="white--text text-decoration-none">
+          <router-link to="/" class="white--text text-decoration-none hidden-sm-and-down">
             <v-app-bar-title>Ace Movie</v-app-bar-title>
           </router-link>
      
