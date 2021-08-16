@@ -5,7 +5,7 @@
       <v-container class="py-8 px-4 pb-3">
         <v-row>
           <v-col cols="12" lg="12" xl="6">
-            <h1 :class="[$vuetify.breakpoint.mdAndUp ? 'display-4' : 'display-1']" class="font-weight-bold"> <span class="light-blue--text">Browse</span> Latest <br> <span  class="light-blue--text">Movies</span> Today 🎬 !</h1>
+            <h1 :class="[$vuetify.breakpoint.mdAndUp ? 'display-4' : 'display-1']" class="font-weight-bold"> <span class="light-blue--text">Watch</span> Latest <br> <span  class="light-blue--text">Movies</span> Today 🎬 !</h1>
             <p class="overline">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam sapiente odio accusantium dignissimos libero eligendi nobis ipsam, delectus neque officiis? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore, distinctio!</p>
             <v-btn large color="primary">
               Read More
