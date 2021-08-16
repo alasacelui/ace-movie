@@ -23,3 +23,8 @@
     max-width: 14% !important;
     flex-basis: 14% !important;
   }
+  .custom8cols {
+    width: 12.5% !important;
+    max-width: 12.5% !important;
+    flex-basis: 12.5% !important;
+  }

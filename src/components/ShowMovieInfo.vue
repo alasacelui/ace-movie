@@ -28,6 +28,12 @@
                 <br>
 
                 <p class="subtitle-1"> <span class="green--text">Synopsis :</span>  {{showMovieInfo.overview}}</p>
+                <p class="overline float-right">
+                    <v-icon small title="Runtime">
+                        mdi-clock
+                    </v-icon>
+                    {{ showMovieInfo.runtime }} <span class="text-lowercase">minutes</span> 
+                </p>
                 <p class=" overline">Release Date: {{ formatDate(showMovieInfo.release_date) }}</p>
                 <p class="overline" v-if="showMovieInfo.revenue > 0">Total Revenue: ${{ formatToThousand(showMovieInfo.revenue) }}</p>
                
@@ -139,7 +145,7 @@ export default {
         
     },
    mounted() {
-      console.log(this.showMovieInfo)
+    //   console.log(this.showMovieInfo)
     }
 
   

@@ -5,7 +5,7 @@
 
      <v-row>
         <v-col>
-          <h1 class="subheader light-blue--text">Now Playing</h1>
+          <h1 class="subheader ">Now Playing 🎬</h1>
         </v-col>
         <v-col  cols="12" md="4" lg="2">
           <v-input>
@@ -34,18 +34,16 @@
                 </v-card-title>
                     <v-spacer></v-spacer>
                 <v-card-actions class="justify-between">
+                      <span class=" overline mr-auto"> {{ formatDateToYear(movie.release_date) }} </span>
                       <v-btn small  text dark class="orange">{{ movie.vote_average }}% IMDB</v-btn>
-                      <v-btn small fab text dark color="grey" outlined class="ml-auto">
-                        <v-icon>mdi-heart</v-icon>
-                      </v-btn>
                 </v-card-actions>
               </v-card>
             </v-col>
         <v-pagination :length="length" v-model="page" total-visible="5" class="mx-auto py-10" @input="handlePagination"></v-pagination>
       </v-row>
 
-
- 
+<!-- 
+ <span class="green--text"> {{ formatDateToYear(movie.release_date) }} </span> -->
   
     </v-container>
   </div>

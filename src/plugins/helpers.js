@@ -6,6 +6,10 @@ const MyPlugin = {
             const formatted_date = new Date(date)
             return formatted_date.toLocaleDateString() // date format
       },
+      Vue.prototype.formatDateToYear = (date) => {
+        const formatted_date = new Date(date)
+        return formatted_date.getFullYear() // date format (YEAR)
+      },
       Vue.prototype.formatToThousand = (val) => {
           return val.toLocaleString() // format to thousand with comma
       }

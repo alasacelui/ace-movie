@@ -5,7 +5,7 @@
 
       <v-row>
         <v-col>
-          <h1 class="subheader light-blue--text">Popular People</h1>
+          <h1 class="subheader">Popular People</h1>
         </v-col>
         <v-col  cols="12" md="4" lg="2">
           <v-input>
